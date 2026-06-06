@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerZone - Iniciar Sesión</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Contenedor principal del login -->
+    <div class="login-container">
+        
+        <!-- Header con logo y tÃ­tulo -->
+        <div class="login-header">
+            <span class="logo-icon">ðŸŽ®</span>
+            <h1>GamerZone</h1>
+            <p>Bienvenido de vuelta, jugador</p>
+        </div>
+
+        <!-- Formulario de login -->
+        <form id="loginForm" class="needs-validation" novalidate>
+            
+            <!-- Selector de rol de usuario -->
+            <div class="form-group">
+                <label class="form-label">Tipo de cuenta</label>
+                <div class="role-selector">
+                    <!-- OpciÃ³n Cliente -->
+                    <div class="role-option">
+                        <input type="radio" id="roleClient" name="userRole" value="cliente" required>
+                        <label for="roleClient" class="role-label">
+                            <span class="role-icon">ðŸ‘¤</span>
+                            <span class="role-text">Cliente</span>
+                        </label>
+                    </div>
+
+                    <!-- OpciÃ³n Administrador -->
+                    <div class="role-option">
+                        <input type="radio" id="roleAdmin" name="userRole" value="admin" required>
+                        <label for="roleAdmin" class="role-label">
+                            <span class="role-icon">âš™ï¸</span>
+                            <span class="role-text">Administrador</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="invalid-feedback d-block" id="roleError" style="display: none;">
+                    Por favor, selecciona un tipo de cuenta
+                </div>
+            </div>
+
+            <!-- Alerta de mensajes -->
+            <div id="alertContainer"></div>
+
+            <!-- Campo de email -->
+            <div class="form-group">
+                <label for="email" class="form-label">Correo electrÃ³nico</label>
+                <input 
+                    type="email" 
+                    class="form-control" 
+                    id="email" 
+                    name="email"
+                    placeholder="tu@correo.com"
+                    required
+                >
+                <div class="invalid-feedback">
+                    Por favor, ingresa un correo electrÃ³nico vÃ¡lido
+                </div>
+            </div>
+
+            <!-- Campo de contraseÃ±a -->
+            <div class="form-group">
+                <label for="password" class="form-label">ContraseÃ±a</label>
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    id="password" 
+                    name="password"
+                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
+                    required
+                >
+                <div class="invalid-feedback">
+                    Por favor, ingresa tu contraseÃ±a
+                </div>
+            </div>
+
+            <!-- Opciones adicionales (Recordar y OlvidÃ© contraseÃ±a) -->
+            <div class="form-options">
+                <div class="form-check">
+                    <input 
+                        class="form-check-input" 
+                        type="checkbox" 
+                        id="rememberMe" 
+                        name="rememberMe"
+                    >
+                    <label class="form-check-label" for="rememberMe">
+                        RecuÃ©rdame
+                    </label>
+                </div>
+                <a href="#" class="forgot-password" onclick="handleForgotPassword(event)">Â¿Olvidaste tu contraseÃ±a?</a>
+            </div>
+
+            <!-- BotÃ³n de login -->
+            <button type="submit" class="btn-login" id="loginBtn">
+                Iniciar sesiÃ³n
+            </button>
+
+        </form>
+
+        <!-- Footer - Enlace al registro -->
+        <div class="auth-footer">
+            <p>Â¿No tienes cuenta?</p>
+            <a href="registro.html">Crear nueva cuenta</a>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS (para validaciÃ³n de formularios) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Utilidades y lógica de página -->
+    <script src="js/utilities.js"></script>
+    <script src="js/login.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Utilidades y lógica de página -->
+    <script src="js/utilities.js"></script>
+    <script src="js/login.js"></script>
+
+</body>
+</html>
+
+
+

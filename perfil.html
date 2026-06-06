@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GamerZone</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar-custom" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <a href="index.html" class="navbar-brand">ðŸŽ® GamerZone</a>
+        <div class="navbar-actions">
+            <a href="carrito.html" class="btn-nav">ðŸ›’ Carrito</a>
+            <a href="login.html" class="btn-nav">Cerrar SesiÃ³n</a>
+        </div>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="profile-container">
+        <!-- Alerta -->
+        <div id="alertContainer"></div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" id="profileTabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#perfil">ðŸ‘¤ Mi Perfil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#ordenes">ðŸ“¦ Mis Ã“rdenes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#seguridad">ðŸ”’ Seguridad</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- TAB 1: Mi Perfil -->
+            <div class="tab-pane fade show active" id="perfil">
+                <div class="profile-section">
+                    <h2 class="section-title">InformaciÃ³n Personal</h2>
+
+                    <!-- Header del perfil -->
+                    <div class="profile-header" style="margin-bottom: 2rem;">
+                        <div class="profile-avatar">ðŸ‘¤</div>
+                        <div>
+                            <div class="profile-info">
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">Nombre</span>
+                                    <span class="profile-info-value" id="displayName">Juan PÃ©rez</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">Usuario</span>
+                                    <span class="profile-info-value" id="displayUsername">JuanPÃ©rez123</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">Correo</span>
+                                    <span class="profile-info-value" id="displayEmail">juan@example.com</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">Miembro desde</span>
+                                    <span class="profile-info-value" id="memberSince">--/--/----</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario de ediciÃ³n -->
+                    <form id="profileForm" class="needs-validation" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName" class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" id="fullName" required>
+                                <div class="invalid-feedback">Por favor, ingresa tu nombre</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="form-label">Nombre de usuario</label>
+                                <input type="text" class="form-control" id="username" required>
+                                <div class="invalid-feedback">Por favor, ingresa un nombre de usuario</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group form-row full">
+                            <div>
+                                <label for="email" class="form-label">Correo electrÃ³nico</label>
+                                <input type="email" class="form-control" id="email" required>
+                                <div class="invalid-feedback">Por favor, ingresa un email vÃ¡lido</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone" class="form-label">TelÃ©fono</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="city" class="form-label">Ciudad</label>
+                                <input type="text" class="form-control" id="city">
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="display: flex; gap: 1rem; margin-top: 2rem;">
+                            <button type="submit" class="btn-save">ðŸ’¾ Guardar Cambios</button>
+                            <button type="button" class="btn-cancel" onclick="resetForm()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- TAB 2: Mis Ã“rdenes -->
+            <div class="tab-pane fade" id="ordenes">
+                <div class="profile-section">
+                    <h2 class="section-title">Historial de Compras</h2>
+                    <table class="orders-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>NÃºmero de Orden</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Detalles</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersBody">
+                            <!-- Se carga dinÃ¡micamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 3: Seguridad -->
+            <div class="tab-pane fade" id="seguridad">
+                <div class="profile-section">
+                    <h2 class="section-title">Cambiar ContraseÃ±a</h2>
+
+                    <form id="securityForm" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <label for="currentPassword" class="form-label">ContraseÃ±a actual</label>
+                            <input type="password" class="form-control" id="currentPassword" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required>
+                            <div class="invalid-feedback">Por favor, ingresa tu contraseÃ±a actual</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newPassword" class="form-label">Nueva contraseÃ±a</label>
+                            <input type="password" class="form-control" id="newPassword" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required>
+                            <div class="invalid-feedback">Por favor, ingresa una nueva contraseÃ±a</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword" class="form-label">Confirmar contraseÃ±a</label>
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required>
+                            <div class="invalid-feedback">Las contraseÃ±as no coinciden</div>
+                        </div>
+
+                        <div class="form-group" style="display: flex; gap: 1rem; margin-top: 2rem;">
+                            <button type="submit" class="btn-save">ðŸ” Actualizar ContraseÃ±a</button>
+                            <button type="button" class="btn-cancel" onclick="document.getElementById('securityForm').reset()">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Utilidades y lógica de página -->
+    <script src="js/utilities.js"></script>
+    <script src="js/perfil.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Utilidades y lógica de página -->
+    <script src="js/utilities.js"></script>
+    <script src="js/perfil.js"></script>
+
+</body>
+</html>
+
+
+
