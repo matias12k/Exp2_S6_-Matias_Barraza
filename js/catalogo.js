@@ -10,16 +10,16 @@ const priceFilter = document.getElementById('priceFilter');
 const sortFilter = document.getElementById('sortFilter');
 
 const products = [
-    { id: 1, title: 'Elden Ring', category: 'accion', platform: 'pc', price: 59.99, emoji: '⚔️', description: 'Aventura de rol en mundo abierto', image: './assets/elden-ring.jpg' },
-    { id: 2, title: 'Baldur\'s Gate 3', category: 'rpg', platform: 'pc', price: 59.99, emoji: '🐉', description: 'RPG táctico con elecciones épicas', image: './assets/baldurs-gate.jpg' },
-    { id: 3, title: 'The Legend of Zelda', category: 'aventura', platform: 'switch', price: 69.99, emoji: '🗡️', description: 'Aventura épica en Hyrule', image: './assets/zelda.jpg' },
-    { id: 4, title: 'Starfield', category: 'accion', platform: 'xbox', price: 69.99, emoji: '🚀', description: 'Exploración espacial sin límites', image: './assets/starfield.jpg' },
-    { id: 5, title: 'Final Fantasy XVI', category: 'rpg', platform: 'ps5', price: 69.99, emoji: '✨', description: 'RPG de acción épico', image: './assets/ffxvi.jpg' },
-    { id: 6, title: 'Civilization VI', category: 'estrategia', platform: 'pc', price: 49.99, emoji: '👑', description: 'Estrategia por turnos clásica', image: './assets/civilization.jpg' },
-    { id: 7, title: 'FIFA 24', category: 'deporte', platform: 'ps5', price: 49.99, emoji: '⚽', description: 'Simulador de fútbol profesional', image: './assets/fc24.jpg' },
-    { id: 8, title: 'Halo Infinite', category: 'accion', platform: 'xbox', price: 59.99, emoji: '🎯', description: 'Shooter épico de ciencia ficción', image: './assets/halo.png' }, 
-    { id: 9, title: 'Ghost of Tsushima', category: 'accion', platform: 'ps5', price: 49.99, emoji: '👻', description: 'Aventura samurái en Japón', image: './assets/ghost.jpg' },
-    { id: 10, title: 'Palworld', category: 'aventura', platform: 'pc', price: 29.99, emoji: '🦆', description: 'Juego de criaturas con acción', image: './assets/palworld.webp' } 
+    { id: 1, title: 'Elden Ring', category: 'accion', platform: 'pc', price: 59.99, emoji: '⚔️', description: 'Aventura de rol en mundo abierto', image: 'assets/elden-ring.jpg' },
+    { id: 2, title: 'Baldur\'s Gate 3', category: 'rpg', platform: 'pc', price: 59.99, emoji: '🐉', description: 'RPG táctico con elecciones épicas', image: 'assets/baldurs-gate.jpg' },
+    { id: 3, title: 'The Legend of Zelda', category: 'aventura', platform: 'switch', price: 69.99, emoji: '🗡️', description: 'Aventura épica en Hyrule', image: 'assets/zelda.jpg' },
+    { id: 4, title: 'Starfield', category: 'accion', platform: 'xbox', price: 69.99, emoji: '🚀', description: 'Exploración espacial sin límites', image: 'assets/starfield.jpg' },
+    { id: 5, title: 'Final Fantasy XVI', category: 'rpg', platform: 'ps5', price: 69.99, emoji: '✨', description: 'RPG de acción épico', image: 'assets/ffxvi.jpg' },
+    { id: 6, title: 'Civilization VI', category: 'estrategia', platform: 'pc', price: 49.99, emoji: '👑', description: 'Estrategia por turnos clásica', image: 'assets/civilization.jpg' },
+    { id: 7, title: 'FIFA 24', category: 'deporte', platform: 'ps5', price: 49.99, emoji: '⚽', description: 'Simulador de fútbol profesional', image: 'assets/fc24.jpg' },
+    { id: 8, title: 'Halo Infinite', category: 'accion', platform: 'xbox', price: 59.99, emoji: '🎯', description: 'Shooter épico de ciencia ficción', image: 'assets/halo.png' }, 
+    { id: 9, title: 'Ghost of Tsushima', category: 'accion', platform: 'ps5', price: 49.99, emoji: '👻', description: 'Aventura samurái en Japón', image: 'assets/ghost.jpg' },
+    { id: 10, title: 'Palworld', category: 'aventura', platform: 'pc', price: 29.99, emoji: '🦆', description: 'Juego de criaturas con acción', image: 'assets/palworld.webp' } 
 ];
 
 let cartItems = [];

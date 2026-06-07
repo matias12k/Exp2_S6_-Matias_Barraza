@@ -4,28 +4,39 @@
  */
 
 let cartItems = [];
-const cartContainer = document.getElementById('cartContainer');
-const alertContainer = document.getElementById('alertContainer');
+
+// selectores del HTML estilo Eneba
+const cartItemsContainer = document.getElementById('cartItemsContainer');
 
 function loadCart() {
-    const savedCart = getFromStorage('cart');
-    if (savedCart) {
-        cartItems = savedCart;
+    // Intenta usar tu función global 'getFromStorage', si no existe usa localStorage nativo
+    if (typeof getFromStorage === 'function') {
+        const savedCart = getFromStorage('cart');
+        if (savedCart) cartItems = savedCart;
+    } else {
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) cartItems = JSON.parse(savedCart);
     }
 }
 
 function saveCart() {
-    saveToStorage('cart', cartItems);
-    renderCart();
+    if (typeof saveToStorage === 'function') {
+        saveToStorage('cart', cartItems);
+    } else {
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+    }
+    renderCart(); // Vuelve a pintar todo tras guardar
 }
 
-function updateQuantity(productId, quantity) {
+// Control interactivo de las flechas + y - 
+function changeQuantity(productId, amount) {
     const item = cartItems.find(item => item.id === productId);
     if (item) {
-        if (quantity <= 0) {
+        const newQuantity = item.quantity + amount;
+        if (newQuantity <= 0) {
             removeItem(productId);
         } else {
-            item.quantity = quantity;
+            item.quantity = newQuantity;
             saveCart();
         }
     }
@@ -44,107 +55,97 @@ function calculateTotalItems() {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
 }
 
+// RENDERIZADO DEFINITIVO EN TARJETAS HORIZONTALES (ESTILO ENEBA)
 function renderCart() {
+    if (!cartItemsContainer) return;
+
+    // Estado vacío: Si no hay elementos agregados
     if (cartItems.length === 0) {
-        cartContainer.innerHTML = `
-            <div style="grid-column: 1 / -1;">
-                <div class="empty-cart">
-                    <div class="empty-cart-icon">🛒</div>
-                    <h3>Tu carrito está vacío</h3>
-                    <p>Parece que no has agregado productos todavía</p>
-                    <a href="index.html" class="btn-continue-shopping">Ir al catálogo</a>
-                </div>
+        cartItemsContainer.innerHTML = `
+            <div class="p-5 text-center rounded my-3" style="background-color: #161726 !important; border: 1px solid rgba(255,255,255,0.05);">
+                <div class="fs-1 mb-2">🛒</div>
+                <h5 class="text-white">Tu carrito está vacío</h5>
+                <p class="text-muted small">Parece que no has agregado productos todavía.</p>
+                <a href="index.html" class="btn btn-sm btn-danger mt-2 px-4">Ir al catálogo</a>
             </div>
         `;
+        updateSummary(0, 0);
         return;
     }
 
+    // Estado activo: Mapea el arreglo y construye las tarjetas horizontales
+    cartItemsContainer.innerHTML = cartItems.map(item => {
+        const itemSubtotal = (item.price * item.quantity).toFixed(2);
+        
+        // Verificación por si la imagen viene vacía para que no tire error
+        const itemImage = item.image ? item.image : 'assets/starfield.jpg';
+
+        return `
+            <div class="cart-item-horizontal p-3 mb-3 d-flex align-items-center gap-3">
+                <div class="cart-item-thumb" style="background-image: url('${itemImage}');"></div>
+                
+                <div class="flex-grow-1 text-start">
+                    <small class="text-uppercase fw-bold" style="font-size: 0.7rem; color: #e94560;">Producto Digital</small>
+                    <h6 class="text-white fw-bold mb-1 mt-1">${item.title}</h6>
+                    <small class="text-white-50 text-uppercase d-block" style="font-size: 0.75rem;">Plataforma: ${item.platform ? item.platform : 'PC'}</small>
+                </div>
+
+                <div class="quantity-control-box">
+                    <button class="btn-qty" onclick="changeQuantity(${item.id}, -1)">−</button>
+                    <div class="qty-number text-white">${item.quantity}</div>
+                    <button class="btn-qty" onclick="changeQuantity(${item.id}, 1)">+</button>
+                </div>
+
+                <div class="text-end px-2" style="min-width: 100px;">
+                    <span class="text-white fw-bold fs-6">$${itemSubtotal}</span>
+                </div>
+
+                <button class="btn-trash-item px-1" onclick="removeItem(${item.id})">🗑️</button>
+            </div>
+        `;
+    }).join('');
+
+    // Calcular valores matemáticos globales y actualizar la barra lateral derecha
     const total = calculateTotal();
     const totalItems = calculateTotalItems();
-
-    const cartHTML = `
-        <div class="cart-items">
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th style="text-align: center;">Cantidad</th>
-                        <th style="text-align: right;">Precio</th>
-                        <th style="text-align: right;">Subtotal</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${cartItems.map(item => `
-                        <tr>
-                            <td>
-                                <div class="product-cell">
-                                    ${item.image ? `<img src="${item.image}" alt="${item.title}" style="width: 50px; height: 50px; border-radius: 4px; object-fit: cover;">` : `<span class="product-emoji">${item.emoji}</span>`}
-                                    <div class="product-info">
-                                        <h6>${item.title}</h6>
-                                        <p>${item.category.toUpperCase()}</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="text-align: center;">
-                                <div class="quantity-control">
-                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">−</button>
-                                    <input type="number" class="quantity-input" value="${item.quantity}" 
-                                           onchange="updateQuantity(${item.id}, parseInt(this.value))" min="1">
-                                    <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
-                                </div>
-                            </td>
-                            <td style="text-align: right;">$${item.price.toFixed(2)}</td>
-                            <td style="text-align: right; font-weight: 600;">$${(item.price * item.quantity).toFixed(2)}</td>
-                            <td>
-                                <button class="btn-remove" onclick="removeItem(${item.id})">Eliminar</button>
-                            </td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        </div>
-
-        <div class="cart-summary">
-            <div class="summary-title">Resumen</div>
-            <div class="summary-row">
-                <span>Subtotal (${totalItems} items):</span>
-                <span>$${total.toFixed(2)}</span>
-            </div>
-            <div class="summary-row">
-                <span>Impuesto (15%):</span>
-                <span>$${(total * 0.15).toFixed(2)}</span>
-            </div>
-            <div class="summary-row">
-                <span>Envío:</span>
-                <span>$${total > 50 ? '0.00' : '9.99'}</span>
-            </div>
-            <div class="summary-row total">
-                <span>Total:</span>
-                <span class="total-value">$${(total * 1.15 + (total > 50 ? 0 : 9.99)).toFixed(2)}</span>
-            </div>
-            <button class="btn-checkout" onclick="proceedToCheckout()">Proceder al pago</button>
-        </div>
-    `;
-
-    cartContainer.innerHTML = cartHTML;
+    updateSummary(totalItems, total);
 }
 
-function proceedToCheckout() {
-    saveToStorage('cartForCheckout', {
-        items: cartItems,
-        subtotal: calculateTotal(),
-        total: calculateTotal() * 1.15 + (calculateTotal() > 50 ? 0 : 9.99),
-        timestamp: new Date().toISOString()
-    });
+// Sincronizar los textos de la columna flotante de Resumen (Derecha)
+function updateSummary(count, total) {
+    const summaryCountEl = document.getElementById('summaryItemsCount');
+    const summarySubtotalEl = document.getElementById('summarySubtotal');
+    const totalAmountEl = document.getElementById('cartTotalAmount');
 
-    window.location.href = 'checkout.html';
+    if (summaryCountEl) summaryCountEl.textContent = `${count} ${count === 1 ? 'producto' : 'productos'}`;
+    if (summarySubtotalEl) summarySubtotalEl.textContent = `$${total.toFixed(2)}`;
+    if (totalAmountEl) totalAmountEl.textContent = `$${total.toFixed(2)}`;
 }
 
-window.updateQuantity = updateQuantity;
+// Acción del gran botón amarillo de Eneba "Continuar con la compra"
+function proceedToPayment() {
+    if (cartItems.length === 0) return;
+    
+    // Guardamos un respaldo por si tu checkout.html lo necesita
+    if (typeof saveToStorage === 'function') {
+        saveToStorage('cartForCheckout', {
+            items: cartItems,
+            subtotal: calculateTotal(),
+            total: calculateTotal(),
+            timestamp: new Date().toISOString()
+        });
+    }
+
+    alert('Conectando de forma segura con la pasarela de pago...');
+    window.location.href = 'pago-exitoso.html'; 
+}
+
+// Declaraciones globales para que el HTML pueda llamar a las funciones desde el onclick
+window.changeQuantity = changeQuantity;
 window.removeItem = removeItem;
-window.proceedToCheckout = proceedToCheckout;
+window.proceedToPayment = proceedToPayment;
 
+// Evento de inicialización
 document.addEventListener('DOMContentLoaded', () => {
     loadCart();
     renderCart();
