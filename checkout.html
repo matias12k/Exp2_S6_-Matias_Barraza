@@ -5,21 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GamerZone</title>
     
-    <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Header -->
     <div class="checkout-container">
         <div class="header-section">
-            <h1>ðŸŽ® Checkout</h1>
+            <h1>🎮 Checkout</h1>
             <p>Completa tu compra de forma segura</p>
         </div>
 
-        <!-- Pasos -->
         <div class="steps-container">
             <div class="step active">
                 <div class="step-circle">1</div>
@@ -31,16 +27,14 @@
             </div>
             <div class="step">
                 <div class="step-circle">3</div>
-                <div class="step-label">ConfirmaciÃ³n</div>
+                <div class="step-label">Confirmación</div>
             </div>
         </div>
 
         <div style="display: grid; grid-template-columns: 1fr 350px; gap: 2rem; align-items: start;">
-            <!-- Formulario de checkout -->
             <div>
-                <!-- Datos de envÃ­o -->
                 <div class="checkout-section">
-                    <h2 class="section-title">ðŸ“ DirecciÃ³n de EnvÃ­o</h2>
+                    <h2 class="section-title">📍 Dirección de Envío</h2>
                     
                     <div id="alertContainer"></div>
 
@@ -48,21 +42,21 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="fullName" class="form-label">Nombre completo</label>
-                                <input type="text" class="form-control" id="fullName" placeholder="Juan PÃ©rez" required>
+                                <input type="text" class="form-control" id="fullName" placeholder="Juan Pérez" required>
                                 <div class="invalid-feedback">Por favor, ingresa tu nombre</div>
                             </div>
                             <div class="form-group">
-                                <label for="email" class="form-label">Correo electrÃ³nico</label>
+                                <label for="email" class="form-label">Correo electrónico</label>
                                 <input type="email" class="form-control" id="email" placeholder="tu@correo.com" required>
-                                <div class="invalid-feedback">Por favor, ingresa un email vÃ¡lido</div>
+                                <div class="invalid-feedback">Por favor, ingresa un email válido</div>
                             </div>
                         </div>
 
                         <div class="form-group form-row full">
                             <div>
-                                <label for="address" class="form-label">DirecciÃ³n</label>
+                                <label for="address" class="form-label">Dirección</label>
                                 <input type="text" class="form-control" id="address" placeholder="Calle 123, Apartamento 4B" required>
-                                <div class="invalid-feedback">Por favor, ingresa tu direcciÃ³n</div>
+                                <div class="invalid-feedback">Por favor, ingresa tu dirección</div>
                             </div>
                         </div>
 
@@ -73,29 +67,28 @@
                                 <div class="invalid-feedback">Por favor, ingresa tu ciudad</div>
                             </div>
                             <div class="form-group">
-                                <label for="postal" class="form-label">CÃ³digo postal</label>
+                                <label for="postal" class="form-label">Código postal</label>
                                 <input type="text" class="form-control" id="postal" placeholder="8000000" required>
-                                <div class="invalid-feedback">Por favor, ingresa el cÃ³digo postal</div>
+                                <div class="invalid-feedback">Por favor, ingresa el código postal</div>
                             </div>
                         </div>
 
                         <div class="form-group form-row full">
                             <div>
-                                <label for="phone" class="form-label">TelÃ©fono</label>
+                                <label for="phone" class="form-label">Teléfono</label>
                                 <input type="tel" class="form-control" id="phone" placeholder="+56 9 1234 5678" required>
-                                <div class="invalid-feedback">Por favor, ingresa tu telÃ©fono</div>
+                                <div class="invalid-feedback">Por favor, ingresa tu teléfono</div>
                             </div>
                         </div>
                     </form>
                 </div>
 
-                <!-- InformaciÃ³n de pago -->
                 <div class="checkout-section">
-                    <h2 class="section-title">ðŸ’³ InformaciÃ³n de Pago</h2>
+                    <h2 class="section-title">💳 Información de Pago</h2>
 
                     <div class="card-preview" id="cardPreview">
                         <div class="card-chip"></div>
-                        <div class="card-number" id="cardNumber">â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢ â€¢â€¢â€¢â€¢</div>
+                        <div class="card-number" id="cardNumber">•••• •••• •••• ••••</div>
                         <div class="card-footer">
                             <div class="card-holder">
                                 <div style="font-size: 0.75rem; opacity: 0.8;">TITULAR</div>
@@ -112,7 +105,7 @@
                         <div class="form-group form-row full">
                             <div>
                                 <label for="cardName" class="form-label">Nombre en la tarjeta</label>
-                                <input type="text" class="form-control" id="cardName" placeholder="Juan PÃ©rez" 
+                                <input type="text" class="form-control" id="cardName" placeholder="Juan Pérez" 
                                        oninput="updateCardHolder(this.value)" required>
                                 <div class="invalid-feedback">Por favor, ingresa el nombre del titular</div>
                             </div>
@@ -120,10 +113,10 @@
 
                         <div class="form-group form-row full">
                             <div>
-                                <label for="cardNumber" class="form-label">NÃºmero de tarjeta</label>
+                                <label for="cardNumber" class="form-label">Número de tarjeta</label>
                                 <input type="text" class="form-control" id="cardNumberInput" placeholder="1234 5678 9012 3456" 
                                        maxlength="19" oninput="formatCardNumber(this)" required>
-                                <div class="invalid-feedback">Por favor, ingresa un nÃºmero de tarjeta vÃ¡lido</div>
+                                <div class="invalid-feedback">Por favor, ingresa un número de tarjeta válido</div>
                             </div>
                         </div>
 
@@ -132,7 +125,7 @@
                                 <label for="expiry" class="form-label">Fecha de vencimiento</label>
                                 <input type="text" class="form-control" id="expiry" placeholder="MM/AA" 
                                        maxlength="5" oninput="formatExpiry(this)" required>
-                                <div class="invalid-feedback">Por favor, ingresa una fecha vÃ¡lida</div>
+                                <div class="invalid-feedback">Por favor, ingresa una fecha válida</div>
                             </div>
                             <div class="form-group">
                                 <label for="cvc" class="form-label">CVC</label>
@@ -144,42 +137,24 @@
                     </form>
                 </div>
 
-                <!-- Botones de acciÃ³n -->
                 <div class="btn-section">
-                    <a href="carrito.html" class="btn-secondary-custom" style="text-align: center;">â† Volver al carrito</a>
+                    <a href="carrito.html" class="btn-secondary-custom" style="text-align: center;">← Volver al carrito</a>
                     <button type="button" class="btn-primary-custom" id="payBtn" onclick="processPayment()">Pagar ahora</button>
                 </div>
             </div>
 
-            <!-- Resumen de compra -->
             <div class="summary-section">
                 <div class="summary-title">Resumen de Compra</div>
                 <div id="summaryContent">
-                    <!-- Se carga dinÃ¡micamente -->
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Utilidades y lógica de página -->
-    <script src="js/utilities.js"></script>
-    <script src="js/checkout.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Utilidades y lógica de página -->
     <script src="js/utilities.js"></script>
     <script src="js/checkout.js"></script>
 
 </body>
 </html>
-
-
-

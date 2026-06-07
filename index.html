@@ -5,54 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GamerZone</title>
     
-    <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">ðŸŽ® GamerZone</a>
+            <a class="navbar-brand" href="#">🎮 GamerZone</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon" style="background-image: none; color: var(--text-light);">â˜°</span>
+                <span class="navbar-toggler-icon" style="background-image: none; color: var(--text-light);">☰</span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="ms-auto d-flex gap-3 align-items-center">
-                    <a href="perfil.html" class="nav-link">ðŸ‘¤ Mi Perfil</a>
+                    <a href="perfil.html" class="nav-link">👤 Mi Perfil</a>
                     <a href="carrito.html" class="nav-link cart-badge">
-                        ðŸ›’ Carrito
+                        🛒 Carrito
                         <span class="cart-badge-number" id="cartCount">0</span>
                     </a>
-                    <a href="login.html" class="btn-nav">Cerrar SesiÃ³n</a>
+                    <a href="login.html" class="btn-nav">Cerrar Sesión</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <div class="hero-section">
         <div class="container-fluid">
-            <h1>CatÃ¡logo de Videojuegos</h1>
-            <p>Descubre los mejores tÃ­tulos para tu plataforma favorita</p>
+            <h1>Catálogo de Videojuegos</h1>
+            <p>Descubre los mejores títulos para tu plataforma favorita</p>
         </div>
     </div>
 
-    <!-- Contenedor principal -->
     <div class="container-fluid">
-        <!-- Filtros -->
         <div class="row mb-4">
             <div class="col-12">
                 <div class="filters-section">
                     <div class="row">
                         <div class="col-12 col-md-6 col-lg-3">
                             <div class="filter-group">
-                                <label for="categoryFilter" class="filter-label">CategorÃ­a</label>
+                                <label for="categoryFilter" class="filter-label">Categoría</label>
                                 <select id="categoryFilter" class="form-select">
-                                    <option value="">Todas las categorÃ­as</option>
-                                    <option value="accion">AcciÃ³n</option>
+                                    <option value="">Todas las categorías</option>
+                                    <option value="accion">Acción</option>
                                     <option value="aventura">Aventura</option>
                                     <option value="rpg">RPG</option>
                                     <option value="estrategia">Estrategia</option>
@@ -82,7 +76,7 @@
                                     <option value="0-30">Hasta $30</option>
                                     <option value="30-60">$30 - $60</option>
                                     <option value="60-100">$60 - $100</option>
-                                    <option value="100+">MÃ¡s de $100</option>
+                                    <option value="100+">Más de $100</option>
                                 </select>
                             </div>
                         </div>
@@ -91,10 +85,10 @@
                             <div class="filter-group">
                                 <label for="sortFilter" class="filter-label">Ordenar por</label>
                                 <select id="sortFilter" class="form-select">
-                                    <option value="popular">MÃ¡s popular</option>
+                                    <option value="popular">Más popular</option>
                                     <option value="price-asc">Precio: menor a mayor</option>
                                     <option value="price-desc">Precio: mayor a menor</option>
-                                    <option value="recent">MÃ¡s reciente</option>
+                                    <option value="recent">Más reciente</option>
                                 </select>
                             </div>
                         </div>
@@ -103,42 +97,24 @@
             </div>
         </div>
 
-        <!-- Grid de productos -->
         <div class="row">
             <div class="col-12">
                 <div class="products-grid" id="productsGrid">
-                    <!-- Los productos se cargarÃ¡n dinÃ¡micamente aquÃ­ -->
-                </div>
+                    </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer-custom">
         <div class="container-fluid">
             <p>&copy; 2024 GamerZone. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Utilidades y lógica de página -->
-    <script src="js/utilities.js"></script>
-    <script src="js/catalogo.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Utilidades y lógica de página -->
     <script src="js/utilities.js"></script>
     <script src="js/catalogo.js"></script>
 
 </body>
 </html>
-
-
-

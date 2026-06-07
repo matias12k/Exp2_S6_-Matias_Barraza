@@ -3,195 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GamerZone</title>
+    <title>GamerZone - Registro</title>
     
-    <!-- Bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Estilos personalizados -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    <!-- Contenedor principal del registro -->
-    <div class="register-container">
-        
-        <!-- Header con logo y tÃ­tulo -->
-        <div class="register-header">
-            <h1>GamerZone</h1>
-            <p>Ãšnete a la comunidad de jugadores</p>
-        </div>
-
-        <!-- Formulario de registro -->
-        <form id="registerForm" class="needs-validation" novalidate>
-            
-            <!-- Alerta de mensajes -->
-            <div id="alertContainer"></div>
-
-            <!-- Campo de nombre completo -->
-            <div class="form-group">
-                <label for="fullName" class="form-label">Nombre completo</label>
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    id="fullName" 
-                    name="fullName"
-                    placeholder="Juan PÃ©rez"
-                    required
-                >
-                <div class="invalid-feedback">
-                    Por favor, ingresa tu nombre completo
-                </div>
-            </div>
-
-            <!-- Campo de email -->
-            <div class="form-group">
-                <label for="email" class="form-label">Correo electrÃ³nico</label>
-                <input 
-                    type="email" 
-                    class="form-control" 
-                    id="email" 
-                    name="email"
-                    placeholder="tu@correo.com"
-                    required
-                >
-                <div class="invalid-feedback">
-                    Por favor, ingresa un correo electrÃ³nico vÃ¡lido
-                </div>
-            </div>
-
-            <!-- Campo de contraseÃ±a con validador -->
-            <div class="form-group">
-                <label for="password" class="form-label">ContraseÃ±a</label>
-                <input 
-                    type="password" 
-                    class="form-control" 
-                    id="password" 
-                    name="password"
-                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
-                    required
-                >
-                <div class="invalid-feedback">
-                    Por favor, ingresa una contraseÃ±a vÃ¡lida
-                </div>
-
-                <!-- Validador de contraseÃ±a -->
-                <div class="password-validator" id="passwordValidator">
-                    <div class="validator-item" id="lengthValidator">
-                        <span class="validator-icon">âœ—</span>
-                        <span class="validator-text">MÃ­nimo 8 caracteres</span>
-                    </div>
-                    <div class="validator-item" id="numberValidator">
-                        <span class="validator-icon">âœ—</span>
-                        <span class="validator-text">Contiene nÃºmeros (0-9)</span>
-                    </div>
-                    <div class="validator-item" id="uppercaseValidator">
-                        <span class="validator-icon">âœ—</span>
-                        <span class="validator-text">Contiene mayÃºsculas (A-Z)</span>
-                    </div>
-                    <div class="validator-item" id="lowercaseValidator">
-                        <span class="validator-icon">âœ—</span>
-                        <span class="validator-text">Contiene minÃºsculas (a-z)</span>
-                    </div>
-                    <div class="validator-item" id="specialValidator">
-                        <span class="validator-icon">âœ—</span>
-                        <span class="validator-text">Contiene carÃ¡cter especial (!@#$%^&*)</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Campo de confirmaciÃ³n de contraseÃ±a -->
-            <div class="form-group">
-                <label for="confirmPassword" class="form-label">Confirmar contraseÃ±a</label>
-                <input 
-                    type="password" 
-                    class="form-control" 
-                    id="confirmPassword" 
-                    name="confirmPassword"
-                    placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢"
-                    required
-                >
-                <div class="invalid-feedback">
-                    Las contraseÃ±as no coinciden
-                </div>
-            </div>
-
-            <!-- Campo de nombre de usuario -->
-            <div class="form-group">
-                <label for="username" class="form-label">Nombre de usuario (gamer tag)</label>
-                <input 
-                    type="text" 
-                    class="form-control" 
-                    id="username" 
-                    name="username"
-                    placeholder="Tu_Nombre_Gamer"
-                    required
-                >
-                <div class="invalid-feedback">
-                    Por favor, ingresa un nombre de usuario
-                </div>
-            </div>
-
-            <!-- Checkbox de tÃ©rminos y condiciones -->
-            <div class="form-check">
-                <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    id="termsCheck" 
-                    name="termsCheck"
-                    required
-                >
-                <label class="form-check-label" for="termsCheck">
-                    Acepto los <a href="#">tÃ©rminos y condiciones</a> y la <a href="#">polÃ­tica de privacidad</a> de GamerZone
-                </label>
-            </div>
-
-            <!-- Checkbox de newsletter -->
-            <div class="form-check">
-                <input 
-                    class="form-check-input" 
-                    type="checkbox" 
-                    id="newsletter" 
-                    name="newsletter"
-                >
-                <label class="form-check-label" for="newsletter">
-                    Quiero recibir ofertas, noticias y actualizaciones de GamerZone
-                </label>
-            </div>
-
-            <!-- BotÃ³n de registro -->
-            <button type="submit" class="btn-register" id="registerBtn">
-                Crear cuenta
-            </button>
-
-        </form>
-
-        <!-- Footer - Enlace al login -->
-        <div class="auth-footer">
-            <p>Â¿Ya tienes cuenta?</p>
-            <a href="login.html">Inicia sesiÃ³n aquÃ­</a>
-        </div>
-
-    </div>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<body class="d-flex align-items-center min-vh-100 py-4">
     
-    <!-- Utilidades y lógica de página -->
-    <script src="js/utilities.js"></script>
-    <script src="js/registro.js"></script>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                
+                <div class="register-container w-100">
+                    
+                    <div class="register-header">
+                        <h1>GamerZone</h1>
+                        <p>Únete a la comunidad de jugadores</p>
+                    </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Utilidades y lógica de página -->
-    <script src="js/utilities.js"></script>
-    <script src="js/registro.js"></script>
+                    <form id="registerForm" class="needs-validation" novalidate>
+                        
+                        <div id="alertContainer"></div>
 
-</body>
-</html>
+                        <div class="form-group">
+                            <label for="fullName" class="form-label">Nombre completo</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="fullName" 
+                                name="fullName"
+                                placeholder="Juan Pérez"
+                                required
+                            >
+                            <div class="invalid-feedback">
+                                Por favor, ingresa tu nombre completo
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="email" class="form-label">Correo electrónico</label>
+                            <input 
+                                type="email" 
+                                class="form-control" 
+                                id="email" 
+                                name="email"
+                                placeholder="tu@correo.com"
+                                required
+                            >
+                            <div class="invalid-feedback">
+                                Por favor, ingresa un correo electrónico válido
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input 
+                                type="password" 
+                                class="form-control" 
+                                id="password" 
+                                name="password"
+                                placeholder="••••••••"
+                                required
+                            >
+                            <div class="invalid-feedback">
+                                Por favor, ingresa una contraseña válida
+                            </div>
 
+                            <div class="password-validator" id="passwordValidator">
+                                <div class="validator-item" id="lengthValidator">
+                                    <span class="validator-icon">✖</span>
+                                    <span class="validator-text">Mínimo 8 caracteres</span>
+                                </div>
+                                <div class="validator-item" id="numberValidator">
+                                    <span class="validator-icon">✖</span>
+                                    <span class="validator-text">Contiene números (0-9)</span>
+                                </div>
+                                <div class="validator-item" id="uppercaseValidator">
+                                    <span class="validator-icon">✖</span>
+                                    <span class="validator-text">Contiene mayúsculas (A-Z)</span>
+                                </div>
+                                <div class="validator-item" id="lowercaseValidator">
+                                    <span class="validator-icon">✖</span>
+                                    <span class="validator-text">Contiene minúsculas (a-z)</span>
+                                </div>
+                                <div class="validator-item" id="specialValidator">
+                                    <span class="validator-icon">✖</span>
+                                    <span class="validator-text">Contiene carácter especial (!@#$%^&*)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                            <input 
+                                type="password" 
+                                class="form-control" 
+                                id="confirmPassword" 
+                                name="confirmPassword"
+                                placeholder="••••••••"
+                                required
+                            >
+                            <div class="invalid-feedback">
+                                Las contraseñas no coinciden
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username" class="form-label">Nombre de usuario (gamer tag)</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="username" 
+                                name="username"
+                                placeholder="Tu_Nombre_Gamer"
+                                required
+                            >
+                            <div class="invalid-feedback">
+                                Por favor, ingresa un nombre de usuario
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input 
+                                class="form-check-input" 
+                                type="checkbox" 
+                                id="termsCheck" 
+                                name="termsCheck"
+                                required
+                            >
+                            <label class="form-check-label" for="termsCheck">
+                                Acepto los <a href="#">términos y condiciones</a> y la
