@@ -1,0 +1,28 @@
+/* Importación global de Bootstrap y sus íconos desde node_modules */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+/* Estilos de fondo y tipografía para toda la aplicación GamerZone */
+body {
+    background-color: #1a1a2e !important; /* Fondo ultra oscuro gamer */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Customización sutil para las barras de desplazamiento (Scrollbar) estilo gamer */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #161726;
+}
+::-webkit-scrollbar-thumb {
+    background: #e94560;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ff4a6e;
+}

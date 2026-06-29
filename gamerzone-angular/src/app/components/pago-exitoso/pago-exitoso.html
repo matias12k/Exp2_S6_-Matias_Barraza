@@ -1,0 +1,32 @@
+<div class="container mt-5 text-center text-light text-start">
+  <div class="p-5 bg-dark rounded border border-secondary shadow-lg col-md-6 mx-auto">
+    
+    <!-- Ícono visual de éxito -->
+    <div class="mb-3 text-success" style="font-size: 4rem;">✓</div>
+    <h1 class="text-success fw-bold mb-3">¡Pago Procesado con Éxito!</h1>
+    <p class="text-muted small">Tu orden ha sido verificada y tu clave digital está lista para activación.</p>
+    
+    <!-- Cuadro resumen de la transacción simulada -->
+    <div class="bg-secondary p-3 rounded my-4 text-start" style="background-color: #1e1f29 !important;">
+      <div class="d-flex justify-content-between mb-2 text-white-50">
+        <span>N° de Transacción:</span>
+        <strong class="text-white">#{{ numOrden }}</strong>
+      </div>
+      <div class="d-flex justify-content-between mb-2 text-white-50">
+        <span>Fecha de Compra:</span>
+        <strong class="text-white">{{ fechaActual }}</strong>
+      </div>
+      <div class="d-flex justify-content-between text-white-50">
+        <span>Estado del Pago:</span>
+        <strong class="text-success">Aprobado / Confirmado</strong>
+      </div>
+    </div>
+    
+    <!-- Botones de navegación interna para retornar al flujo de la tienda -->
+    <div class="d-flex gap-3 justify-content-center mt-4">
+      <button routerLink="/catalogo" class="btn btn-outline-light px-4">Volver a la Tienda</button>
+      <button routerLink="/perfil" class="btn btn-primary px-4">Ir a mi Perfil</button>
+    </div>
+
+  </div>
+</div>

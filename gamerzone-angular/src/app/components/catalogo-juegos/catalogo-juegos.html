@@ -1,0 +1,49 @@
+<div class="container mt-4 text-light">
+  
+  <div class="p-4 mb-4 rounded text-start" style="background: linear-gradient(135deg, #3b1c8c 10%, #161726 90%); border-bottom: 3px solid #e94560;">
+    <span class="badge bg-warning text-dark fw-bold mb-2">🚀 PRÓXIMAMENTE / 2026</span>
+    <h1 class="fw-bold text-white">LOS LANZAMIENTOS MÁS ESPERADOS</h1>
+    <p class="text-white-50 mb-0">Reserva tus claves digitales al mejor precio del mercado.</p>
+  </div>
+
+  <div class="row g-3 align-items-center mb-4 text-start">
+    <div class="col-12 col-md-6 col-lg-3">
+      <label class="form-label small text-muted">Categoría</label>
+      <select [(ngModel)]="filtroCategoria" (change)="aplicarFiltros()" class="form-select bg-dark text-light border-secondary">
+        <option value="">Todas las categorías</option>
+        <option value="accion">Acción</option>
+        <option value="rpg">RPG</option>
+        <option value="aventura">Aventura</option>
+      </select>
+    </div>
+    
+    <div class="col-12 col-md-6 col-lg-3">
+      <label class="form-label small text-muted">Ordenar por</label>
+      <select [(ngModel)]="ordenarPor" (change)="aplicarFiltros()" class="form-select bg-dark text-light border-secondary">
+        <option value="popular">Más popular</option>
+        <option value="price-asc">Precio: menor a mayor</option>
+        <option value="price-desc">Precio: mayor a menor</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-lg-4" *ngFor="let juego of juegosFiltrados">
+      <div class="card bg-dark text-light h-100 border border-secondary shadow-sm">
+        <img [src]="juego.imagen" class="card-img-top" [alt]="juego.titulo" style="height: 250px; object-fit: cover;">
+        <div class="card-body d-flex flex-column justify-content-between text-start">
+          <div>
+            <span class="badge bg-danger text-uppercase mb-2" style="font-size: 0.7rem;">{{ juego.categoria }}</span>
+            <h5 class="card-title fw-bold mb-2">{{ juego.titulo }}</h5>
+            <p class="text-muted small">Código digital global original para activación inmediata.</p>
+          </div>
+          <div class="mt-3">
+            <p class="fs-4 fw-bold text-success m-0">{{ juego.precio | currency:'CLP':'symbol':'1.0-0' }}</p>
+            <button (click)="agregarAlCarro(juego)" class="btn btn-primary w-100 mt-2 fw-bold">+ Carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

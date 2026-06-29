@@ -1,0 +1,39 @@
+<div class="container mt-5 text-light" style="max-width: 450px;">
+  <div class="card bg-dark border-secondary p-4 rounded shadow-lg">
+    <div class="text-center mb-4">
+      <span style="font-size: 3rem;">🎮</span>
+      <h3 class="fw-bold mt-2 text-white">GamerZone - Iniciar Sesión</h3>
+      <p class="text-muted small">Bienvenido de vuelta, jugador</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      
+      <div class="mb-3">
+        <label class="form-label text-white fw-semibold">Correo electrónico</label>
+        <input type="email" class="form-control bg-secondary text-white border-0" formControlName="email" placeholder="tu@correo.com">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-white fw-semibold">Contraseña</label>
+        <input type="password" class="form-control bg-secondary text-white border-0" formControlName="password" placeholder="••••••••">
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label text-white fw-semibold">Tipo de cuenta</label>
+        <select class="form-select bg-secondary text-white border-0" formControlName="rol">
+          <option value="cliente">Cliente (Comprar videojuegos)</option>
+          <option value="admin">Administrador (Gestión de Stock)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 fw-bold py-2 shadow-sm" [disabled]="loginForm.invalid">
+        Ingresar al Setup
+      </button>
+    </form>
+
+    <div class="d-flex justify-content-between mt-3 small">
+      <a routerLink="/recuperar" class="text-muted text-decoration-none">¿Olvidaste tu contraseña?</a>
+      <a routerLink="/registro" class="text-danger text-decoration-none">Crear cuenta nueva</a>
+    </div>
+  </div>
+</div>

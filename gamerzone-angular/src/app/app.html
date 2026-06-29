@@ -1,0 +1,38 @@
+<!-- Navbar Superior Fijo con Estética Gamer -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary shadow sticky-top">
+  <div class="container">
+    <!-- Enlace al catálogo -->
+    <a class="navbar-brand fw-bold text-danger fs-4" routerLink="/catalogo">🎮 GAMERZONE</a>
+    
+    <button class="navbar-toggler" type="type" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center gap-2">
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/catalogo"><i class="bi bi-grid-3x3-gap-fill me-1"></i> Catálogo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/carrito"><i class="bi bi-cart4 me-1"></i> Carrito</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" routerLink="/perfil"><i class="bi bi-person-circle me-1"></i> Perfil</a>
+        </li>
+        <li class="nav-item ms-lg-2">
+          <a class="btn btn-outline-danger btn-sm px-3 fw-bold" routerLink="/login">Iniciar Sesión</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Contenedor Dinámico: Aquí Angular inyectará automáticamente cada componente según la ruta -->
+<main class="py-4">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer simple al final de la página -->
+<footer class="text-center py-4 text-muted border-top border-secondary mt-5 bg-dark">
+  <small>© 2026 GamerZone Inc. - Examen Transversal de Plataformas Front-End</small>
+</footer>

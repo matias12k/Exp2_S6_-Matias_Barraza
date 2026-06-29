@@ -1,0 +1,48 @@
+<div class="container mt-5 text-light text-start" style="max-width: 500px;">
+  <div class="card bg-dark border-secondary p-4 rounded shadow-lg">
+    <h2 class="text-center mb-4 text-white fw-bold">🎮 GamerZone - Crear Cuenta</h2>
+    
+    <form [formGroup]="registroForm" (ngSubmit)="onRegister()">
+      
+      <div class="mb-3">
+        <label class="form-label text-white fw-semibold">Nombre completo</label>
+        <input type="text" class="form-control bg-secondary text-white border-0" formControlName="fullName" placeholder="Ej: Juan Pérez">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-white fw-semibold">Correo electrónico</label>
+        <input type="email" class="form-control bg-secondary text-white border-0" formControlName="email" placeholder="juan@correo.com">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-white fw-semibold">Contraseña</label>
+        <input type="password" class="form-control bg-secondary text-white border-0" formControlName="password" placeholder="••••••••">
+        
+        <div *ngIf="registroForm.get('password')?.touched && registroForm.get('password')?.invalid" class="text-warning small mt-1">
+          ⚠️ La contraseña debe tener entre 8 y 18 caracteres, incluir mayúsculas, minúsculas y un carácter especial (!@#$%^&*).
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-white fw-semibold">Nombre de usuario (Gamer Tag)</label>
+        <input type="text" class="form-control bg-secondary text-white border-0" formControlName="username" placeholder="Ej: JuanPro123">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-white fw-semibold">Tipo de cuenta (Rol)</label>
+        <select class="form-select bg-secondary text-white border-0" formControlName="rol">
+          <option value="cliente">Cliente (Comprar juegos)</option>
+          <option value="admin">Administrador (Gestionar inventario)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-danger w-100 mt-3 fw-bold shadow-sm" [disabled]="registroForm.invalid">
+        Crear Cuenta Gamer
+      </button>
+    </form>
+
+    <div class="text-center mt-3 small">
+      <a routerLink="/login" class="text-muted text-decoration-none hover-link">¿Ya tienes cuenta? Inicia sesión aquí</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="container mt-5 text-light text-start" style="max-width: 500px;">
+  <div class="card bg-dark border-secondary p-4 rounded shadow-lg">
+    
+    <div class="text-center mb-4">
+      <span style="font-size: 3rem;">👤</span>
+      <h3 class="fw-bold mt-2">Mi Perfil Gamer</h3>
+      <p class="text-muted small">Actualiza tu información personal y de contacto.</p>
+    </div>
+
+    <!-- Conexión del formulario reactivo -->
+    <form [formGroup]="profileForm" (ngSubmit)="guardarPerfil()">
+      
+      <div class="mb-3">
+        <label class="form-label text-muted small">Nombre Completo</label>
+        <input type="text" class="form-control bg-secondary text-light border-0" formControlName="nombre">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-muted small">Gamer Tag / Usuario</label>
+        <input type="text" class="form-control bg-secondary text-light border-0" formControlName="tag">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label text-muted small">Correo Electrónico</label>
+        <input type="email" class="form-control bg-secondary text-light border-0" formControlName="email">
+      </div>
+
+      <button type="submit" class="btn btn-warning w-100 fw-bold mt-3 text-dark" [disabled]="profileForm.invalid">
+        💾 Guardar Cambios
+      </button>
+      
+    </form>
+    
+  </div>
+</div>

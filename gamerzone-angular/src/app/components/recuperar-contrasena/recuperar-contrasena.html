@@ -1,0 +1,32 @@
+<div class="container mt-5 text-light" style="max-width: 450px;">
+  <div class="card bg-dark border-secondary p-4 rounded shadow-lg">
+    <div class="text-center mb-3">
+      <span style="font-size: 3rem;">🎮</span>
+      <h3 class="fw-bold mt-2">GamerZone</h3>
+      <p class="text-muted small">Recuperación de contraseña</p>
+    </div>
+
+    <form [formGroup]="recoverForm" (ngSubmit)="enviar()">
+      <p class="text-center mb-4 text-muted small">
+        Ingresa tu correo electrónico registrado y te enviaremos las instrucciones para restablecer tu contraseña.
+      </p>
+      
+      <div class="mb-4">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control bg-secondary text-light border-0" formControlName="email" placeholder="tu@correo.com">
+        
+        <div *ngIf="recoverForm.get('email')?.touched && recoverForm.get('email')?.invalid" class="text-warning small mt-1">
+          ⚠️ Por favor, ingresa un correo electrónico válido.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 fw-bold py-2" [disabled]="recoverForm.invalid">
+        Enviar instrucciones
+      </button>
+    </form>
+
+    <div class="text-center mt-4">
+      <a routerLink="/login" class="text-muted small text-decoration-none">← Volver al inicio de sesión</a>
+    </div>
+  </div>
+</div>

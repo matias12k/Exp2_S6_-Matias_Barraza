@@ -1,0 +1,66 @@
+<div class="container mt-5 text-light text-start">
+  <h4 class="fw-bold mb-4">🛒 Tu Carrito Gamer</h4>
+
+  <!-- Se muestra este bloque si hay al menos un juego agregado al carro -->
+  <div class="row g-4" *ngIf="items.length > 0">
+    
+    <!-- Lado Izquierdo: Fila horizontal por cada producto (Grid de 8 columnas en pantallas grandes) -->
+    <div class="col-12 col-lg-8">
+      <div class="card bg-dark border-secondary p-3 mb-3 animate-fade" *ngFor="let item of items">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+          
+          <div class="d-flex align-items-center gap-3">
+            <!-- Renderiza la portada original cargada desde la carpeta pública -->
+            <img [src]="item.imagen" class="rounded" style="width: 65px; height: 85px; object-fit: cover;" alt="Portada">
+            <div>
+              <h6 class="mb-1 fw-bold text-white">{{ item.titulo }}</h6>
+              <span class="badge bg-danger text-uppercase" style="font-size: 0.65rem;">{{ item.categoria }}</span>
+            </div>
+          </div>
+
+          <div class="text-end">
+            <!-- Pipe currency para dar formato de moneda CLP al entero sin decimales -->
+            <span class="d-block fw-bold fs-5 text-success mb-2">{{ item.precio | currency:'CLP':'symbol':'1.0-0' }}</span>
+            <button class="btn btn-sm btn-outline-danger" (click)="eliminar(item.id)">
+              🗑️ Quitar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Lado Derecho: Panel lateral con el subtotal (Grid de 4 columnas en pantallas grandes) -->
+    <div class="col-12 col-lg-4">
+      <div class="card bg-dark border-secondary p-4 rounded text-light shadow">
+        <h5 class="fw-bold mb-4">Resumen de tu Orden</h5>
+        
+        <div class="d-flex justify-content-between mb-3 text-white-50">
+          <span>Subtotal</span>
+          <span>{{ total | currency:'CLP':'symbol':'1.0-0' }}</span>
+        </div>
+        
+        <hr class="border-secondary">
+        
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <span class="fs-5 fw-bold">Total a pagar:</span>
+          <span class="fs-3 fw-bold text-success">{{ total | currency:'CLP':'symbol':'1.0-0' }}</span>
+        </div>
+
+        <!-- Ejecuta el método para saltar al checkout -->
+        <button class="btn btn-warning w-100 fw-bold py-3 text-dark" (click)="procederAlCheckout()">
+          Proceder a la Caja
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Vista alternativa amigable si el usuario vacía el carro por completo -->
+  <div *ngIf="items.length === 0" class="text-center p-5 bg-dark rounded border border-secondary my-5 shadow">
+    <span style="font-size: 3.5rem;">🎮</span>
+    <h5 class="fw-bold mt-3">Tu carrito está completamente vacío</h5>
+    <p class="text-muted small">No dejes pasar las mejores ofertas en tus juegos favoritos.</p>
+    <a routerLink="/catalogo" class="btn btn-danger mt-2 px-4 fw-bold">Volver al catálogo</a>
+  </div>
+</div>
