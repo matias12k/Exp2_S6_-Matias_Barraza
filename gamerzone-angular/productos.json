@@ -1,0 +1,20 @@
+{
+  "productos": {
+    "1": {
+      "id": 1,
+      "nombre": "Elden Ring",
+      "precio": 45000,
+      "descripcion": "Juego de acción y rol de mundo abierto.",
+      "imagen": "https://via.placeholder.com/150",
+      "stock": 10
+    },
+    "2": {
+      "id": 2,
+      "nombre": "Cyberpunk 2077",
+      "precio": 35000,
+      "descripcion": "Aventura de acción de mundo abierto en Night City.",
+      "imagen": "https://via.placeholder.com/150",
+      "stock": 15
+    }
+  }
+}

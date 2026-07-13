@@ -1,66 +1,85 @@
-<div class="container mt-5 text-light text-start">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold text-white">⚙️ Panel de Control - Gestión de Inventario</h2>
-  </div>
-  
-  <div class="row g-4">
-    <!-- Formulario Reactivo de Creación/Edición -->
-    <div class="col-12 col-md-4">
-      <div class="card bg-dark text-light p-3 border-secondary shadow">
-        <h5 class="fw-bold mb-3 text-warning">Agregar nuevo título</h5>
-        
-        <form [formGroup]="productForm" (ngSubmit)="guardarProducto()">
-          <div class="mb-3">
-            <label class="form-label small text-muted">Título del videojuego</label>
-            <input type="text" class="form-control bg-secondary text-light border-0" formControlName="titulo" placeholder="Ej: Resident Evil">
-          </div>
-          
-          <div class="mb-3">
-            <label class="form-label small text-muted">Categoría / Género</label>
-            <input type="text" class="form-control bg-secondary text-light border-0" formControlName="categoria" placeholder="Ej: Acción / RPG">
-          </div>
-          
-          <div class="mb-3">
-            <label class="form-label small text-muted">Precio de venta (CLP)</label>
-            <input type="number" class="form-control bg-secondary text-light border-0" formControlName="precio">
-          </div>
-          
-          <!-- Se habilita sólo si todos los campos requeridos pasan la validación -->
-          <button type="submit" class="btn btn-success w-100 fw-bold" [disabled]="productForm.invalid">
-            Guardar en Stock
-          </button>
-        </form>
-      </div>
+<div class="container mt-4">
+  <h2 class="mb-4">Panel de Administración - Gamer Zone</h2>
+
+  <!-- Formulario de Creación / Edición -->
+  <div class="card mb-5 shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">{{ isEditing ? 'Modificar Producto' : 'Añadir Nuevo Videojuego' }}</h5>
     </div>
-    
-    <!-- Listado General del Catálogo en Tabla Moderna -->
-    <div class="col-12 col-md-8">
-      <div class="card bg-dark border-secondary p-3 shadow">
-        <h5 class="fw-bold mb-3">Lista de Juegos Activos</h5>
-        <div class="table-responsive">
-          <table class="table table-dark table-striped table-hover align-middle m-0">
-            <thead>
-              <tr class="text-muted border-secondary">
-                <th>Portada</th>
-                <th>Juego</th>
-                <th>Categoría</th>
-                <th class="text-end">Precio</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Itera de forma limpia la lista usando la directiva de Angular -->
-              <tr *ngFor="let juego of juegos" class="border-secondary">
-                <td>
-                  <img [src]="juego.imagen" class="rounded" style="width: 40px; height: 55px; object-fit: cover;">
-                </td>
-                <td class="fw-bold">{{ juego.titulo }}</td>
-                <td><span class="badge bg-secondary text-uppercase">{{ juego.categoria }}</span></td>
-                <td class="text-end text-success fw-bold">{{ juego.precio | currency:'CLP':'symbol':'1.0-0' }}</td>
-              </tr>
-            </tbody>
-          </table>
+    <div class="card-body">
+      <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Nombre del Juego</label>
+            <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="productoForm.get('nombre')?.touched && productoForm.get('nombre')?.invalid">
+            <div class="invalid-feedback">El nombre es obligatorio y debe tener al menos 3 caracteres.</div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Precio ($)</label>
+            <input type="number" class="form-control" formControlName="precio" [class.is-invalid]="productoForm.get('precio')?.touched && productoForm.get('precio')?.invalid">
+            <div class="invalid-feedback">El precio debe ser mayor a 0.</div>
+          </div>
         </div>
-      </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label">URL de la Imagen</label>
+            <input type="text" class="form-control" formControlName="imagen" [class.is-invalid]="productoForm.get('imagen')?.touched && productoForm.get('imagen')?.invalid">
+            <div class="invalid-feedback">La URL de la imagen es obligatoria.</div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label">Stock de Inventario</label>
+            <input type="number" class="form-control" formControlName="stock" [class.is-invalid]="productoForm.get('stock')?.touched && productoForm.get('stock')?.invalid">
+            <div class="invalid-feedback">El stock no puede ser negativo.</div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Descripción</label>
+          <textarea class="form-control" rows="3" formControlName="descripcion" [class.is-invalid]="productoForm.get('descripcion')?.touched && productoForm.get('descripcion')?.invalid"></textarea>
+          <div class="invalid-feedback">La descripción es obligatoria (máximo 250 caracteres).</div>
+        </div>
+
+        <button type="submit" class="btn btn-success me-2">{{ isEditing ? 'Actualizar' : 'Guardar Producto' }}</button>
+        <button type="button" class="btn btn-secondary" *ngIf="isEditing" (ngSubmit)="resetForm()">Cancelar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tabla de Visualización del Inventario (Consumo GET) -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-dark text-white">
+      <h5 class="mb-0">Inventario en Tiempo Real (Firebase)</h5>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover align-middle mb-0">
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let prod of productos">
+            <td><img [src]="prod.imagen" [alt]="prod.nombre" width="50" class="rounded"></td>
+            <td><strong>{{ prod.nombre }}</strong></td>
+            <td>${{ prod.precio | number }}</td>
+            <td>{{ prod.stock }} u.</td>
+            <td>{{ prod.descripcion }}</td>
+            <td>
+              <button class="btn btn-sm btn-warning me-1" (click)="onEdit(prod)">Editar</button>
+              <button class="btn btn-sm btn-danger" (click)="onDelete(prod.id)">Eliminar</button>
+            </td>
+          </tr>
+          <tr *ngIf="productos.length === 0">
+            <td colspan="6" class="text-center py-4 text-muted">No hay productos disponibles en Firebase.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
