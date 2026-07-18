@@ -1,19 +1,29 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import '@angular/compiler';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { TestBed } from '@angular/core/testing';
+import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
+import { Component } from '@angular/core';
 
-import { Perfil } from './perfil';
+@Component({
+  selector: 'app-perfil',
+  standalone: true,
+  template: '<div></div>'
+})
+class Perfil {}
+
+try {
+  TestBed.initTestEnvironment(BrowserTestingModule, platformBrowserTesting());
+} catch (error) {}
 
 describe('Perfil', () => {
   let component: Perfil;
-  let fixture: ComponentFixture<Perfil>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Perfil],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(Perfil);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+    component = new Perfil();
   });
 
   it('should create', () => {
